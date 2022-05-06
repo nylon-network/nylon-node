@@ -1,3 +1,4 @@
+use jsonrpc_core::serde_json::Map;
 use nylon_runtime::{
 	AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig, Signature, SudoConfig,
 	SystemConfig, WASM_BINARY,
@@ -25,8 +26,8 @@ type AccountPublic = <Signature as Verify>::Signer;
 
 /// Generate an account ID from seed.
 pub fn get_account_id_from_seed<TPublic: Public>(seed: &str) -> AccountId
-where
-	AccountPublic: From<<TPublic::Pair as Pair>::Public>,
+	where
+		AccountPublic: From<<TPublic::Pair as Pair>::Public>,
 {
 	AccountPublic::from(get_from_seed::<TPublic>(seed)).into_account()
 }
@@ -38,6 +39,10 @@ pub fn authority_keys_from_seed(s: &str) -> (AuraId, GrandpaId) {
 
 pub fn development_config() -> Result<ChainSpec, String> {
 	let wasm_binary = WASM_BINARY.ok_or_else(|| "Development wasm not available".to_string())?;
+
+	let mut properties = Map::new();
+	properties.insert("tokenSymbol".into(), "NYLON".into());
+	properties.insert("tokenDecimals".into(), 6.into());
 
 	Ok(ChainSpec::from_genesis(
 		// Name
@@ -70,7 +75,7 @@ pub fn development_config() -> Result<ChainSpec, String> {
 		None,
 		None,
 		// Properties
-		None,
+		Some(properties),
 		// Extensions
 		None,
 	))
@@ -78,6 +83,10 @@ pub fn development_config() -> Result<ChainSpec, String> {
 
 pub fn local_testnet_config() -> Result<ChainSpec, String> {
 	let wasm_binary = WASM_BINARY.ok_or_else(|| "Development wasm not available".to_string())?;
+
+	let mut properties = Map::new();
+	properties.insert("tokenSymbol".into(), "NYLON".into());
+	properties.insert("tokenDecimals".into(), 6.into());
 
 	Ok(ChainSpec::from_genesis(
 		// Name
@@ -118,7 +127,7 @@ pub fn local_testnet_config() -> Result<ChainSpec, String> {
 		None,
 		// Properties
 		None,
-		None,
+		Some(properties),
 		// Extensions
 		None,
 	))
