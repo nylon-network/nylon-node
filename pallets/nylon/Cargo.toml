@@ -1,13 +1,13 @@
 [package]
 name = "pallet-nylon"
 version = "0.0.1-dev"
-description = "FRAME pallet template for defining custom runtime logic."
-authors = ["Substrate DevHub <https://github.com/substrate-developer-hub>"]
-homepage = "https://substrate.io/"
+description = "The Nylon FRAME pallet defining runtime logic."
+authors = ["Nylon Network <https://github.com/nylon-network>"]
+homepage = "https://nylon.network/"
 edition = "2021"
 license = "Unlicense"
 publish = false
-repository = "https://github.com/substrate-developer-hub/substrate-node-template/"
+repository = "https://github.com/nylon-network/nylon-node/"
 
 [package.metadata.docs.rs]
 targets = ["x86_64-unknown-linux-gnu"]
