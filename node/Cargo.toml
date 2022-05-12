@@ -1,13 +1,15 @@
 [package]
 name = "nylon-node"
 version = "0.0.1-dev"
-description = "A fresh FRAME-based Substrate node, ready for hacking."
-authors = ["Substrate DevHub <https://github.com/substrate-developer-hub>"]
-homepage = "https://substrate.io/"
+description = "A FRAME-based Substrate node for the Nylon network."
+authors = ["Nylon Network <https://github.com/nylon-network>"]
+homepage = "https://nylon.network/"
 edition = "2021"
 license = "Unlicense"
 publish = false
-repository = "https://github.com/substrate-developer-hub/substrate-node-template/"
+repository = "https://github.com/nylon-network/nylon-node/"
+
+# this declaration tells cargo where to bootstrap the build from
 build = "build.rs"
 
 [package.metadata.docs.rs]
@@ -17,6 +19,10 @@ targets = ["x86_64-unknown-linux-gnu"]
 name = "nylon-node"
 
 [dependencies]
+
+# Local Dependencies
+nylon-runtime = { version = "0.0.1-dev", path = "../runtime" }
+
 clap = { version = "3.1.6", features = ["derive"] }
 
 sc-cli = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.19", features = ["wasmtime"] }
@@ -41,7 +47,7 @@ sp-keyring = { version = "6.0.0", git = "https://github.com/paritytech/substrate
 frame-system = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.19" }
 pallet-transaction-payment = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.19" }
 
-# These dependencies are used for the node template's RPCs
+# These dependencies are used for the Nylon node's RPCs
 jsonrpc-core = "18.0.0"
 sc-rpc = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.19" }
 sp-api = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.19" }
@@ -55,9 +61,6 @@ pallet-transaction-payment-rpc = { version = "4.0.0-dev", git = "https://github.
 # These dependencies are used for runtime benchmarking
 frame-benchmarking = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.19" }
 frame-benchmarking-cli = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.19" }
-
-# Local Dependencies
-nylon-runtime = { version = "0.0.1-dev", path = "../runtime" }
 
 # CLI-specific dependencies
 try-runtime-cli = { version = "0.10.0-dev", optional = true, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.19" }
